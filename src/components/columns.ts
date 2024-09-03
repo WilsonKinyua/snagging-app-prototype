@@ -62,9 +62,19 @@ export const columns: ColumnDef<Snag>[] = [
       return h("div", { class: "text-left font-medium" }, "Priority");
     },
     cell: ({ row }) => {
-      return h("div", { class: "text-left font-medium" }, [
-        h(Badge, { type: row.getValue("priority") }, row.getValue("priority")),
-      ]);
+      // priority === "high" ? "bg-red-500 text-white" : "bg-blue-500 text-white";
+      const priority = row.getValue("priority");
+      const color =
+        priority === "high"
+          ? "bg-red-500 text-white"
+          : priority === "medium"
+          ? "bg-primary text-white"
+          : "bg-blue-500 text-white";
+      return h(
+        Badge,
+        { class: `text-left font-medium ${color}` },
+        priority as string
+      );
     },
   },
   {
