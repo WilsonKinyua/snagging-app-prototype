@@ -8,8 +8,6 @@
 
     "baseUrl": ".",
     "paths": {
-      // disable vue/dist/__globaltypes_3.4_false.d.ts
-      "vue": ["node_modules/vue/dist/vue.esm-bundler.js"],
       "@/*": ["./src/*"]
     }
   }
