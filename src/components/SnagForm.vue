@@ -25,6 +25,7 @@ const schema = z.object({
   priority: z.string().nonempty("Priority is required"),
   location: z.string().nonempty("Location is required"),
   image: z.string().nonempty("Image is required"),
+  assignedTo: z.string().nonempty("Assigned to is required"),
 });
 
 const { handleSubmit, values, resetForm, setValues } = useForm({
@@ -36,10 +37,11 @@ const { handleSubmit, values, resetForm, setValues } = useForm({
     priority: "",
     location: "",
     image: "",
+    assignedTo: "",
   },
 });
 
-const emit = defineEmits(['snagCreated']);
+const emit = defineEmits(["snagCreated"]);
 
 const onSubmit = handleSubmit(async (values) => {
   const newSnag = {
@@ -52,9 +54,10 @@ const onSubmit = handleSubmit(async (values) => {
     image: values.image,
     createdAt: new Date(),
     status: "open",
+    assignedTo: values.assignedTo,
   };
   snagStore.addSnag(newSnag);
-  emit('snagCreated', newSnag);
+  emit("snagCreated", newSnag);
   toast.success("Snag created successfully");
   resetForm();
 });
@@ -114,6 +117,17 @@ const onSubmit = handleSubmit(async (values) => {
         <FormLabel for="image">Image</FormLabel>
         <Input v-bind="componentField" id="image" placeholder="Eg. Image URL" />
         <FormMessage for="image" />
+      </FormItem>
+    </FormField>
+    <FormField v-slot="{ componentField }" name="assignedTo">
+      <FormItem>
+        <FormLabel for="assignedTo">Assigned To</FormLabel>
+        <Input
+          v-bind="componentField"
+          id="assignedTo"
+          placeholder="Eg. John Doe"
+        />
+        <FormMessage for="assignedTo" />
       </FormItem>
     </FormField>
     <Button type="submit" class="w-full"> Create Snag </Button>

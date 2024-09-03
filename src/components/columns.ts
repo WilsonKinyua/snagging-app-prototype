@@ -122,9 +122,7 @@ export const columns: ColumnDef<Snag>[] = [
       return h(
         "div",
         { class: "text-left font-medium" },
-        new Date(row.getValue("createdAt")).toLocaleDateString() +
-          " " +
-          new Date(row.getValue("createdAt")).toLocaleTimeString()
+        new Date(row.getValue("createdAt")).toLocaleDateString() 
       );
     },
   },
