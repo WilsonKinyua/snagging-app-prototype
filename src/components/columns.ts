@@ -99,10 +99,17 @@ export const columns: ColumnDef<Snag>[] = [
       return h("div", { class: "text-left font-medium" }, "Status");
     },
     cell: ({ row }) => {
+      const status = row.getValue("status");
+      const color =
+        status === "in-progress"
+          ? "bg-yellow-500 text-white"
+          : status === "completed"
+          ? "bg-green-500 text-white"
+          : "text-gray-500 text-white";
       return h(
-        "div",
-        { class: "text-left font-medium" },
-        row.getValue("status")
+        Badge,
+        { class: `text-left font-medium ${color}` },
+        status as string
       );
     },
   },
