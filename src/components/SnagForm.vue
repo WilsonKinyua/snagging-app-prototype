@@ -1,4 +1,13 @@
 <script setup lang="ts">
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { computed, defineEmits } from "vue";
 import { useSnagStore } from "@/stores/snagStore";
 import { toast } from "vue-sonner";
@@ -100,7 +109,18 @@ const onSubmit = handleSubmit(async (values) => {
     <FormField v-slot="{ componentField }" name="priority">
       <FormItem>
         <FormLabel for="priority">Priority</FormLabel>
-        <Input v-bind="componentField" id="priority" placeholder="Eg. High" />
+        <Select v-bind="componentField" id="priority">
+          <SelectTrigger>
+            <SelectValue placeholder="Select priority" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup label="Priority">
+              <SelectItem value="low">Low</SelectItem>
+              <SelectItem value="medium">Medium</SelectItem>
+              <SelectItem value="high">High</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
         <FormMessage for="priority" />
       </FormItem>
     </FormField>
@@ -125,11 +145,18 @@ const onSubmit = handleSubmit(async (values) => {
     <FormField v-slot="{ componentField }" name="assignedTo">
       <FormItem>
         <FormLabel for="assignedTo">Assigned To</FormLabel>
-        <Input
-          v-bind="componentField"
-          id="assignedTo"
-          placeholder="Eg. John Doe"
-        />
+        <Select v-bind="componentField" id="assignedTo">
+          <SelectTrigger>
+            <SelectValue placeholder="Select user" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup label="Users">
+              <SelectItem value="John Doe">John Doe</SelectItem>
+              <SelectItem value="Jane Doe">Jane Doe</SelectItem>
+              <SelectItem value="Alice Doe">Alice Doe</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
         <FormMessage for="assignedTo" />
       </FormItem>
     </FormField>
