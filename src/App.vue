@@ -22,7 +22,7 @@ onMounted(() => {
       <div class="flex h-16 items-center px-4">
         <TeamSwitcher />
         <MainNav class="mx-6" />
-        <div class="ml-auto flex items-center space-x-4">
+        <div class="ml-auto lg:flex hidden items-center space-x-4">
           <Search />
           <UserNav />
         </div>

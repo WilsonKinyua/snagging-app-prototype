@@ -26,9 +26,9 @@ const snags = computed(() => snagStore.snags);
           <h2 class="text-3xl font-bold tracking-tight mb-4">Dashboard</h2>
           <p>Welcome back, <strong>John Doe</strong>!</p>
         </div>
-        <div class="flex items-center space-x-2">
+        <div class="lg:flex items-center space-x-2 hidden">
           <DateRangePicker />
-          <Button class="cursor-not-allowed">Download</Button>
+          <Button disabled class="cursor-not-allowed">Download</Button>
         </div>
       </div>
       <div value="overview" class="space-y-4">
@@ -93,14 +93,13 @@ const snags = computed(() => snagStore.snags);
           </Card>
         </div>
         <div class="grid gap-4 md:grid-cols-1 lg:grid-cols-7">
-          <Card class="col-span-4">
+          <Card class="lg:col-span-4">
             <CardHeader>
               <CardTitle>Overview</CardTitle>
             </CardHeader>
             <CardContent class="pl-2">
               <Overview
                 :data="[
-                  //by months from createdAt (name: string; total: number)
                   {
                     name: 'Jan',
                     total: snags.filter(
@@ -177,7 +176,7 @@ const snags = computed(() => snagStore.snags);
               />
             </CardContent>
           </Card>
-          <Card class="col-span-3">
+          <Card class="lg:col-span-3">
             <CardHeader>
               <CardTitle>Recent Snags</CardTitle>
               <CardDescription>

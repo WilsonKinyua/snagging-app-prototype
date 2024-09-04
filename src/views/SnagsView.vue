@@ -26,12 +26,12 @@ const handleSnagCreated = (newSnag: Snag) => {
   <div class="flex justify-between items-center">
     <h2 class="text-2xl font-bold tracking-tight my-10">All Snags</h2>
     <Sheet>
-      <SheetTrigger> <Button> Create Snag </Button></SheetTrigger>
+      <SheetTrigger> <Button> Report a Snag </Button></SheetTrigger>
       <SheetContent class="h-screen overflow-scroll">
         <SheetHeader>
-          <SheetTitle> Create a new Snag </SheetTitle>
+          <SheetTitle> Report a Snag </SheetTitle>
           <SheetDescription>
-            <p class="my-2">Fill in the form below to create a new snag.</p>
+            <p class="my-2">Fill in the form below to report a new snag.</p>
             <SnagForm @snagCreated="handleSnagCreated" />
           </SheetDescription>
         </SheetHeader>
