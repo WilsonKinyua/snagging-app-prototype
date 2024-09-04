@@ -38,10 +38,11 @@ export const columns: ColumnDef<Snag>[] = [
       return h("div", { class: "text-left font-medium" }, "Description");
     },
     cell: ({ row }) => {
+      const description = row.getValue("description") as string;
       return h(
         "div",
         { class: "text-left font-medium" },
-        row.getValue("description")
+        description.slice(0, 10) + "..."
       );
     },
   },
@@ -60,7 +61,6 @@ export const columns: ColumnDef<Snag>[] = [
       return h("div", { class: "text-left font-medium" }, "Priority");
     },
     cell: ({ row }) => {
-      // priority === "high" ? "bg-red-500 text-white" : "bg-blue-500 text-white";
       const priority = row.getValue("priority");
       const color =
         priority === "high"
