@@ -12,6 +12,7 @@ export interface Snag {
   status?: string;
   completionComment?: string;
   completionImage?: string;
+  estimatedCost?: number;
   createdAt: Date;
 }
 

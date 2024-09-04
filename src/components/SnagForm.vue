@@ -26,6 +26,7 @@ const schema = z.object({
   location: z.string().nonempty("Location is required"),
   image: z.string().nonempty("Image is required"),
   assignedTo: z.string().nonempty("Assigned to is required"),
+  estimatedCost: z.number().min(0, "Estimated cost must be a positive number"),
 });
 
 const { handleSubmit, values, resetForm, setValues } = useForm({
@@ -38,6 +39,7 @@ const { handleSubmit, values, resetForm, setValues } = useForm({
     location: "",
     image: "",
     assignedTo: "",
+    estimatedCost: 0,
   },
 });
 
@@ -55,6 +57,7 @@ const onSubmit = handleSubmit(async (values) => {
     createdAt: new Date(),
     status: "open",
     assignedTo: values.assignedTo,
+    estimatedCost: values.estimatedCost,
   };
   snagStore.addSnag(newSnag);
   emit("snagCreated", newSnag);
@@ -128,6 +131,18 @@ const onSubmit = handleSubmit(async (values) => {
           placeholder="Eg. John Doe"
         />
         <FormMessage for="assignedTo" />
+      </FormItem>
+    </FormField>
+    <FormField v-slot="{ componentField }" name="estimatedCost">
+      <FormItem>
+        <FormLabel for="estimatedCost">Estimated Cost</FormLabel>
+        <Input
+          v-bind="componentField"
+          id="estimatedCost"
+          type="number"
+          placeholder="Eg. 100"
+        />
+        <FormMessage for="estimatedCost" />
       </FormItem>
     </FormField>
     <Button type="submit" class="w-full"> Create Snag </Button>
