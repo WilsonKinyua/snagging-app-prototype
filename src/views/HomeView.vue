@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { CircleDashed, ListCheck, ListTodo, RefreshCcw } from "lucide-vue-next";
+import { CircleDashed, DollarSign, ListCheck, ListTodo, RefreshCcw } from "lucide-vue-next";
 import { computed } from "vue";
 import { useSnagStore } from "@/stores/snagStore";
 
@@ -32,8 +32,26 @@ const snags = computed(() => snagStore.snags);
         </div>
       </div>
       <div value="overview" class="space-y-4">
-        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
           <Card class="bg-primary text-white">
+            <CardHeader
+              class="flex flex-row items-center justify-between space-y-0 pb-2"
+            >
+              <CardTitle class="text-sm font-medium"> Total Cost </CardTitle>
+              <DollarSign />
+            </CardHeader>
+            <CardContent>
+              <div class="text-2xl font-bold">
+                <span class="text-xs">KES</span>
+                {{
+                  (Math.random() * 10000000)
+                    .toFixed(2)
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                }}
+              </div>
+            </CardContent>
+          </Card>
+          <Card class="border border-[#8EB338] text-[#8EB338]">
             <CardHeader
               class="flex flex-row items-center justify-between space-y-0 pb-2"
             >
