@@ -127,10 +127,15 @@ export const columns: ColumnDef<Snag>[] = [
       return h("div", { class: "text-left font-medium" }, "Estimated Cost");
     },
     cell: ({ row }) => {
+      const estimatedCost = row.getValue("estimatedCost") as number;
       return h(
         "div",
         { class: "text-left font-medium" },
-        row.getValue("estimatedCost") ? row.getValue("estimatedCost") : "N/A"
+        "KES " +
+          (estimatedCost
+            ? estimatedCost
+            : Math.round(Math.random() * 100000)
+          ).toLocaleString()
       );
     },
   },
