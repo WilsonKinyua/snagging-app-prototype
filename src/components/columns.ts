@@ -1,9 +1,7 @@
 import type { ColumnDef } from "@tanstack/vue-table";
 import { h } from "vue";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import type { Snag } from "@/stores/snagStore";
-import { Button } from "./ui/button";
 
 export const columns: ColumnDef<Snag>[] = [
   {
@@ -124,6 +122,19 @@ export const columns: ColumnDef<Snag>[] = [
     },
   },
   {
+    accessorKey: "estimatedCost",
+    header: ({ column }) => {
+      return h("div", { class: "text-left font-medium" }, "Estimated Cost");
+    },
+    cell: ({ row }) => {
+      return h(
+        "div",
+        { class: "text-left font-medium" },
+        row.getValue("estimatedCost") ? row.getValue("estimatedCost") : "N/A"
+      );
+    },
+  },
+  {
     accessorKey: "createdAt",
     header: ({ column }) => {
       return h("div", { class: "text-left font-medium" }, "Created");
@@ -132,7 +143,7 @@ export const columns: ColumnDef<Snag>[] = [
       return h(
         "div",
         { class: "text-left font-medium" },
-        new Date(row.getValue("createdAt")).toLocaleDateString() 
+        new Date(row.getValue("createdAt")).toLocaleDateString()
       );
     },
   },
