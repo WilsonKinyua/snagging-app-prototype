@@ -32,20 +32,20 @@ export const columns: ColumnDef<Snag>[] = [
       );
     },
   },
-  {
-    accessorKey: "description",
-    header: ({ column }) => {
-      return h("div", { class: "text-left font-medium" }, "Description");
-    },
-    cell: ({ row }) => {
-      const description = row.getValue("description") as string;
-      return h(
-        "div",
-        { class: "text-left font-medium" },
-        description.slice(0, 10) + "..."
-      );
-    },
-  },
+  // {
+  //   accessorKey: "description",
+  //   header: ({ column }) => {
+  //     return h("div", { class: "text-left font-medium" }, "Description");
+  //   },
+  //   cell: ({ row }) => {
+  //     const description = row.getValue("description") as string;
+  //     return h(
+  //       "div",
+  //       { class: "text-left font-medium" },
+  //       description.slice(0, 10) + "..."
+  //     );
+  //   },
+  // },
   {
     accessorKey: "type",
     header: ({ column }) => {
@@ -122,9 +122,32 @@ export const columns: ColumnDef<Snag>[] = [
     },
   },
   {
+    accessorKey: "responseTime",
+    header: ({ column }) => {
+      return h("div", { class: "text-left font-medium" }, "Response Time");
+    },
+    cell: ({ row }) => {
+      const responseTime = row.getValue("responseTime") as number;
+      const status = row.getValue("status");
+      if (status === "completed") {
+        return h(
+          "div",
+          { class: "text-left font-medium" },
+          Math.round(Math.random() * 10) + " days"
+        );
+      } else {
+        return h(
+          "div",
+          { class: "text-left font-medium text-red-500" },
+          "Not yet completed"
+        );
+      }
+    },
+  },
+  {
     accessorKey: "estimatedCost",
     header: ({ column }) => {
-      return h("div", { class: "text-left font-medium" }, "Estimated Cost");
+      return h("div", { class: "text-left font-medium" }, "Cost");
     },
     cell: ({ row }) => {
       const estimatedCost = row.getValue("estimatedCost") as number;

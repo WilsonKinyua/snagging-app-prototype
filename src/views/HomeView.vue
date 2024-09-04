@@ -10,9 +10,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { CircleDashed, DollarSign, ListCheck, ListTodo, RefreshCcw } from "lucide-vue-next";
+import {
+  CircleDashed,
+  DollarSign,
+  ListCheck,
+  ListTodo,
+  RefreshCcw,
+} from "lucide-vue-next";
 import { computed } from "vue";
 import { useSnagStore } from "@/stores/snagStore";
+import DataTable from "@/components/DataTable.vue";
+import { columns } from "@/components/columns";
 
 const snagStore = useSnagStore();
 const snags = computed(() => snagStore.snags);
@@ -224,6 +232,16 @@ const snags = computed(() => snagStore.snags);
             </CardContent>
           </Card>
         </div>
+        <h2
+          class="text-2xl font-bold tracking-tight my-10"
+          v-if="snags.filter((snag) => snag.status === 'completed').length > 0"
+        >
+          Completed Snags
+        </h2>
+        <DataTable
+          :data="snags.filter((snag) => snag.status === 'completed')"
+          :columns="columns"
+        />
       </div>
     </div>
   </div>
