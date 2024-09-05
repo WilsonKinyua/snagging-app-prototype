@@ -46,7 +46,6 @@ const snags = computed(() => snagStore.snags);
               class="flex flex-row items-center justify-between space-y-0 pb-2"
             >
               <CardTitle class="text-sm font-medium"> Total Cost </CardTitle>
-              <DollarSign />
             </CardHeader>
             <CardContent>
               <div class="text-2xl font-bold">

@@ -32,20 +32,20 @@ export const columns: ColumnDef<Snag>[] = [
       );
     },
   },
-  // {
-  //   accessorKey: "description",
-  //   header: ({ column }) => {
-  //     return h("div", { class: "text-left font-medium" }, "Description");
-  //   },
-  //   cell: ({ row }) => {
-  //     const description = row.getValue("description") as string;
-  //     return h(
-  //       "div",
-  //       { class: "text-left font-medium" },
-  //       description.slice(0, 10) + "..."
-  //     );
-  //   },
-  // },
+  {
+    accessorKey: "description",
+    header: ({ column }) => {
+      return h("div", { class: "text-left font-medium" }, "Description");
+    },
+    cell: ({ row }) => {
+      const description = row.getValue("description") as string;
+      return h(
+        "div",
+        { class: "text-left font-medium" },
+        description.slice(0, 10) + "..."
+      );
+    },
+  },
   {
     accessorKey: "type",
     header: ({ column }) => {
@@ -139,7 +139,7 @@ export const columns: ColumnDef<Snag>[] = [
         return h(
           "div",
           { class: "text-left font-medium text-red-500" },
-          "Not yet completed"
+          "Ongoing"
         );
       }
     },
